@@ -108,7 +108,7 @@ export default {
                     this.categories = data.data.data.cates;
                     this.formValidate.title = data.data.data.post.post.Title;
                     this.formValidate.summary = data.data.data.post.post.Summary;
-                    this.formValidate.content = data.data.data.post.post.Original;
+                    this.formValidate.content = data.data.data.post.post.Content;
                     this.formValidate.tags = data.data.data.post.postTag;
                     this.formValidate.category = data.data.data.post.postCate;
                     this.contentEditor.setValue(this.formValidate.content);
