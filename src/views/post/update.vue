@@ -103,7 +103,6 @@ export default {
   mounted() {
     const id = this.$route.query.id;
     this.postId = id;
-    this.defaultData(id);
     this.contentEditor = new Vditor("vditor", {
       height: 360,
       toolbarConfig: {
@@ -115,6 +114,10 @@ export default {
       upload: {
         url: "/console/post/imgUpload",
         token: getCookie("token"),
+      },
+      after: () => {
+        // 在这里加载你的内容
+        this.defaultData(id);
       },
       fullscreen: {
         index: 1000,

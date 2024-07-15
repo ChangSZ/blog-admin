@@ -101,24 +101,27 @@ export default {
     };
   },
   mounted() {
-    this.defaultData(),
-      (this.contentEditor = new Vditor("vditor", {
-        accept: "image/*",
-        height: 360,
-        toolbarConfig: {
-          pin: true,
-        },
-        cache: {
-          enable: false,
-        },
-        upload: {
-          url: "/console/post/imgUpload",
-          token: getCookie("token"),
-        },
-        fullscreen: {
-          index: 1000,
-        },
-      }));
+    this.contentEditor = new Vditor("vditor", {
+      accept: "image/*",
+      height: 360,
+      toolbarConfig: {
+        pin: true,
+      },
+      cache: {
+        enable: false,
+      },
+      upload: {
+        url: "/console/post/imgUpload",
+        token: getCookie("token"),
+      },
+      after: () => {
+        // 在这里加载你的内容
+        this.defaultData();
+      },
+      fullscreen: {
+        index: 1000,
+      },
+    });
   },
   methods: {
     defaultData() {
