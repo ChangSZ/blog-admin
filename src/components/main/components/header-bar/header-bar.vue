@@ -8,27 +8,27 @@
   </div>
 </template>
 <script>
-import siderTrigger from './sider-trigger'
-import customBreadCrumb from './custom-bread-crumb'
-import './header-bar.less'
+import siderTrigger from "./sider-trigger";
+import customBreadCrumb from "./custom-bread-crumb";
+import "./header-bar.less";
 export default {
-  name: 'HeaderBar',
+  name: "HeaderBar",
   components: {
     siderTrigger,
-    customBreadCrumb
+    customBreadCrumb,
   },
   props: {
-    collapsed: Boolean
+    collapsed: Boolean,
   },
   computed: {
-    breadCrumbList () {
-      return this.$store.state.app.breadCrumbList
-    }
+    breadCrumbList() {
+      return this.$store.state.app.breadCrumbList;
+    },
   },
   methods: {
-    handleCollpasedChange (state) {
-      this.$emit('on-coll-change', state)
-    }
-  }
-}
+    handleCollpasedChange(state) {
+      this.$emit("on-coll-change", state);
+    },
+  },
+};
 </script>

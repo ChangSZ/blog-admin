@@ -5,8 +5,8 @@
       <side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
         <div class="logo-con">
           <a href="/" target="_blank">
-          <img v-show="!collapsed" :src="maxLogo" key="max-logo" />
-          <img v-show="collapsed" :src="minLogo" key="min-logo" />
+            <img v-show="!collapsed" :src="maxLogo" key="max-logo" />
+            <img v-show="collapsed" :src="minLogo" key="min-logo" />
           </a>
         </div>
       </side-menu>
@@ -14,7 +14,7 @@
     <Layout>
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <user :user-avator="userAvator" :message-unread-count="unreadCount"/>
+          <user :user-avator="userAvator" :message-unread-count="unreadCount" />
         </header-bar>
       </Header>
 
@@ -22,7 +22,7 @@
         <Layout class="main-layout-con">
           <Content class="content-wrapper">
             <!-- 内容 -->
-            <router-view/>
+            <router-view />
 
           </Content>
         </Layout>
@@ -43,14 +43,14 @@ export default {
   components: {
     SideMenu,
     HeaderBar,
-    User
+    User,
   },
   data() {
     return {
       collapsed: false, // 侧边栏缩放
       minLogo,
       maxLogo,
-      isFullscreen: false
+      isFullscreen: false,
     };
   },
   computed: {
@@ -63,7 +63,7 @@ export default {
     },
     unreadCount() {
       return this.$store.state.app.unreadCount;
-    }
+    },
   },
   methods: {
     turnToPage(route) {
@@ -81,13 +81,13 @@ export default {
       this.$router.push({
         name,
         params,
-        query
+        query,
       });
     },
     // sider导航栏展开收起
     handleCollapsedChange(state) {
       this.collapsed = state;
-    }
+    },
   },
   watch: {
     $route(newRoute) {
@@ -95,13 +95,13 @@ export default {
       this.$store.commit("app/setBreadCrumb", newRoute);
       // 更新sider菜单展开项
       this.$refs.sideMenu.updateOpenName(newRoute.name);
-    }
+    },
   },
   mounted() {
     /**
      * @description 初始化设置面包屑导航
      */
     this.$store.commit("app/setBreadCrumb", this.$route);
-  }
+  },
 };
 </script>

@@ -2,7 +2,7 @@
   <div class="user-avator-dropdown">
     <Dropdown @on-click="handleClick">
       <Badge :dot="!!messageUnreadCount">
-        <Avatar :src="userAvator"/>
+        <Avatar :src="userAvator" />
       </Badge>
       <Icon :size="18" type="md-arrow-dropdown"></Icon>
       <DropdownMenu slot="list">
@@ -18,58 +18,63 @@
 </template>
 
 <script>
-import './user.less'
-import {AuthLogout,AuthClearCache} from "@/api/auth"
-import { clearCookie } from '@/libs/cookie'
+import "./user.less";
+import { AuthLogout, AuthClearCache } from "@/api/auth";
+import { clearCookie } from "@/libs/cookie";
 
 export default {
-  name: 'User',
+  name: "User",
   props: {
     userAvator: {
       type: String,
-      default: ''
+      default: "",
     },
     messageUnreadCount: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   methods: {
-    logout () {
+    logout() {
       AuthLogout()
-              .then(res => {
-                window.localStorage.removeItem('token');
-                location.href = '/'
-                // this.$router.push({
-                //   name: '/'
-                // })
-              }).catch(err => {
-                this.$Message.error("操作失败"+ err);
-              })
+        .then((res) => {
+          window.localStorage.removeItem("token");
+          location.href = "/";
+          // this.$router.push({
+          //   name: '/'
+          // })
+        })
+        .catch((err) => {
+          this.$Message.error("操作失败" + err);
+        });
     },
-    message () {
+    message() {
       this.$router.push({
-        name: 'message_page'
-      })
+        name: "message_page",
+      });
     },
-    delCache () {
+    delCache() {
       AuthClearCache()
-              .then(res => {
-                  this.$Message.success("操作成功");
-              }).catch(err => {
-                this.$Message.error("操作失败"+ err);
-      })
+        .then((res) => {
+          this.$Message.success("操作成功");
+        })
+        .catch((err) => {
+          this.$Message.error("操作失败" + err);
+        });
     },
-    handleClick (name) {
+    handleClick(name) {
       switch (name) {
-        case 'logout': this.logout();
+        case "logout":
+          this.logout();
           break;
-        case 'message': this.message();
+        case "message":
+          this.message();
           break;
-        case 'delCache': this.delCache();
-        break
+        case "delCache":
+          this.delCache();
+          break;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>

@@ -8,7 +8,7 @@ let config = {
     }
 };
 
-export function GetTagList(params){
+export function GetTagList(params) {
     return axios.get(
         '/console/tag/',
         {
@@ -17,7 +17,7 @@ export function GetTagList(params){
     )
 }
 
-export function TagEdit(id,params){
+export function TagEdit(id, params) {
     return axios.get(
         '/console/tag/edit/' + id,
         {
@@ -26,9 +26,9 @@ export function TagEdit(id,params){
     )
 }
 
-export function TagUpdate(id,name,displayName,seoDesc) {
+export function TagUpdate(id, name, displayName, seoDesc) {
     return axios.put(
-        '/console/tag/'+ id,
+        '/console/tag/' + id,
         {
             name: name,
             displayName: displayName,
@@ -38,7 +38,7 @@ export function TagUpdate(id,name,displayName,seoDesc) {
     )
 }
 
-export function TagCreate(name,displayName,seoDesc) {
+export function TagCreate(name, displayName, seoDesc) {
     return axios.post(
         '/console/tag/',
         {
@@ -50,7 +50,7 @@ export function TagCreate(name,displayName,seoDesc) {
     )
 }
 
-export function TagDestory(id,params) {
+export function TagDestory(id, params) {
     return axios.delete(
         '/console/tag/' + id,
         {

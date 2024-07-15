@@ -35,7 +35,7 @@ export default {
       formInline: {
         userName: undefined,
         createUser: undefined,
-        createTime: []
+        createTime: [],
       },
       ruleInline: {},
       columns: [
@@ -45,22 +45,22 @@ export default {
           render: (h, params) => {
             return h("img", {
               attrs: { src: params.row.userHeader },
-              style: { height: "32px", width: "32px" }
+              style: { height: "32px", width: "32px" },
             });
-          }
+          },
         },
         {
           title: "姓名",
-          key: "userName"
+          key: "userName",
         },
         {
           title: "更新时间",
           key: "createTime",
-          sortable: "custom"
+          sortable: "custom",
         },
         {
           title: "添加人",
-          key: "createUser"
+          key: "createUser",
         },
         {
           title: "操作",
@@ -73,16 +73,16 @@ export default {
                 {
                   props: {
                     type: "primary",
-                    size: "small"
+                    size: "small",
                   },
                   style: {
-                    marginRight: "5px"
+                    marginRight: "5px",
                   },
                   on: {
                     click: () => {
                       this.openDetailModal(params.row);
-                    }
-                  }
+                    },
+                  },
                 },
                 "详情"
               ),
@@ -91,16 +91,16 @@ export default {
                 {
                   props: {
                     type: "primary",
-                    size: "small"
+                    size: "small",
                   },
                   style: {
-                    marginRight: "5px"
+                    marginRight: "5px",
                   },
                   on: {
                     click: () => {
                       this.openEditModal(params.row);
-                    }
-                  }
+                    },
+                  },
                 },
                 "修改"
               ),
@@ -109,19 +109,19 @@ export default {
                 {
                   props: {
                     type: "error",
-                    size: "small"
+                    size: "small",
                   },
                   on: {
                     click: () => {
                       this.remove(params.row);
-                    }
-                  }
+                    },
+                  },
                 },
                 "删除"
-              )
+              ),
             ]);
-          }
-        }
+          },
+        },
       ],
       dataList: [],
       tableLoad: false,
@@ -130,13 +130,13 @@ export default {
         sort: {
           // 排序
           property: null, // 排序对象
-          direction: null // 排序顺序
+          direction: null, // 排序顺序
         },
         page: {
           // 页码
           num: 1,
-          size: 10
-        }
+          size: 10,
+        },
       },
     };
   },
@@ -146,10 +146,10 @@ export default {
       this.$Modal.confirm({
         title: "是否删除该数据表",
         onOk: () => {
-          console.log('删除')
+          console.log("删除");
         },
         okText: "确定",
-        cancelText: "取消"
+        cancelText: "取消",
       });
     },
     // 开启新建
@@ -164,12 +164,12 @@ export default {
     },
     // 开启详情
     openDetailModal(params) {
-      console.log('查看详情')
+      console.log("查看详情");
     },
 
     // 查询
     handleSubmit() {
-      this.searchConditions.page.num = 1
+      this.searchConditions.page.num = 1;
       this.getList();
     },
 
@@ -201,16 +201,16 @@ export default {
       this.getList();
     },
     getList() {
-     // this.tableLoad = true;
-     // 整理条件参数
+      // this.tableLoad = true;
+      // 整理条件参数
       const params = {
         page: {
           num: this.searchConditions.page.num,
-          size: this.searchConditions.page.size
+          size: this.searchConditions.page.size,
         },
         sort: {
           property: this.searchConditions.sort.property,
-          direction: this.searchConditions.sort.direction
+          direction: this.searchConditions.sort.direction,
         },
         search: {
           userName: this.formInline.userName,
@@ -220,8 +220,8 @@ export default {
             : null,
           endTime: SearchExit(this.formInline.createTime[1])
             ? Format(this.formInline.createTime[1])
-            : null
-        }
+            : null,
+        },
       };
       // 过滤空参数
       // Object.keys(params).forEach(doc => {
@@ -232,14 +232,14 @@ export default {
       //   });
       // });
 
-      GetUserList(params)
-        // .then(data => {
+      GetUserList(params);
+      // .then(data => {
 
-        // })
-        // .catch(() => {
-        //   this.tableLoad = false;
-        // });
-    }
+      // })
+      // .catch(() => {
+      //   this.tableLoad = false;
+      // });
+    },
   },
 
   components: {
@@ -258,28 +258,26 @@ export default {
           "http://www.ghost64.com/qqtupian/zixunImg/local/2017/12/28/15144398193808.jpg",
         userName: "管理员a",
         createTime: "2018-11-11",
-        createUser: "添加人a"
+        createUser: "添加人a",
       },
       {
         userHeader:
           "http://www.ghost64.com/qqtupian/zixunImg/local/2017/12/28/15144398193808.jpg",
         userName: "管理员b",
         createTime: "2018-11-11",
-        createUser: "添加人b"
+        createUser: "添加人b",
       },
       {
         userHeader:
           "http://www.ghost64.com/qqtupian/zixunImg/local/2017/12/28/15144398193808.jpg",
         userName: "管理员c",
         createTime: "2018-11-11",
-        createUser: "添加人c"
-      }
+        createUser: "添加人c",
+      },
     ];
     this.getList();
   },
-  beforeDestroy() {
-
-  }
+  beforeDestroy() {},
 };
 </script>
 <style scoped>

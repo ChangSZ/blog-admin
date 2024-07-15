@@ -7,7 +7,7 @@ let config = {
     }
 };
 
-export function LinkIndex(params){
+export function LinkIndex(params) {
     return axios.get(
         '/console/link',
         {
@@ -16,7 +16,7 @@ export function LinkIndex(params){
     )
 }
 
-export function LinkStore(name,link,order) {
+export function LinkStore(name, link, order) {
     return axios.post(
         '/console/link',
         {
@@ -28,7 +28,7 @@ export function LinkStore(name,link,order) {
     )
 }
 
-export function LinkEdit(id,params){
+export function LinkEdit(id, params) {
     return axios.get(
         '/console/link/edit/' + id,
         {
@@ -37,9 +37,9 @@ export function LinkEdit(id,params){
     )
 }
 
-export function LinkUpdate(id,name,link,order) {
+export function LinkUpdate(id, name, link, order) {
     return axios.put(
-        '/console/link/'+ id,
+        '/console/link/' + id,
         {
             name: name,
             link: link,
@@ -49,7 +49,7 @@ export function LinkUpdate(id,name,link,order) {
     )
 }
 
-export function LinkDestroy(id,params) {
+export function LinkDestroy(id, params) {
     return axios.delete(
         '/console/link/' + id,
         {

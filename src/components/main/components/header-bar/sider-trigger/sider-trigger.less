@@ -1,8 +1,10 @@
-.trans{
+.trans {
   transition: transform .2s ease;
 }
+
 @size: 40px;
-.sider-trigger-a{
+
+.sider-trigger-a {
   padding: 6px;
   width: @size;
   height: @size;
@@ -10,11 +12,13 @@
   text-align: center;
   color: #5c6b77;
   margin-top: 12px;
-  i{
+
+  i {
     .trans;
     vertical-align: top;
   }
-  &.collapsed i{
+
+  &.collapsed i {
     transform: rotateZ(90deg);
     .trans;
   }

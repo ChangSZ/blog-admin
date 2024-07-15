@@ -46,31 +46,31 @@ export default {
         userName: undefined,
         createUser: undefined,
         imgFile: undefined,
-        imgrule: undefined
+        imgrule: undefined,
       },
       ruleValidate: {
         userName: [
           {
             required: true,
             message: "请填写姓名",
-            trigger: "blur"
-          }
+            trigger: "blur",
+          },
         ],
         createUser: [
           {
             required: true,
             message: "请填写创建人",
-            trigger: "blur"
-          }
+            trigger: "blur",
+          },
         ],
         imgrule: [
           {
             required: true,
             message: "请上传头像",
-            trigger: "change"
-          }
-        ]
-      }
+            trigger: "change",
+          },
+        ],
+      },
     };
   },
 
@@ -95,7 +95,7 @@ export default {
         this.$Message.error("上传头像图片大小不能超过 2MB!");
       }
       if (isJPG && isLt2M) {
-        ImgReader(file, result => {
+        ImgReader(file, (result) => {
           this.viewList = [result];
         });
         this.formValidate.imgrule = file.name;
@@ -105,7 +105,7 @@ export default {
       return false;
     },
     handleSubmit(name) {
-      this.$refs[name].validate(valid => {
+      this.$refs[name].validate((valid) => {
         if (valid) {
           this.isload = true;
           this.submitData();
@@ -120,7 +120,7 @@ export default {
           this.$parent.buildVisible = false;
         },
         okText: "确定",
-        cancelText: "取消"
+        cancelText: "取消",
       });
     },
     handleReset(name) {
@@ -145,14 +145,14 @@ export default {
       // .catch(err => {
       //   this.isload = false;
       // });
-    }
+    },
   },
 
   components: {},
 
   computed: {},
 
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style scoped>

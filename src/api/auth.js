@@ -9,7 +9,7 @@ let config = {
 };
 
 
-export function Register(params){
+export function Register(params) {
     return axios.get(
         '/console/register',
         {
@@ -18,7 +18,7 @@ export function Register(params){
     )
 }
 
-export function AuthRegister(userName,email,password) {
+export function AuthRegister(userName, email, password) {
     return axios.post(
         '/console/register/',
         {
@@ -30,7 +30,7 @@ export function AuthRegister(userName,email,password) {
     )
 }
 
-export function Login(params){
+export function Login(params) {
     return axios.get(
         '/console/login',
         {
@@ -39,7 +39,7 @@ export function Login(params){
     )
 }
 
-export function AuthLogin(captchaKey,email,password,captcha) {
+export function AuthLogin(captchaKey, email, password, captcha) {
     return axios.post(
         '/console/login',
         {
@@ -52,7 +52,7 @@ export function AuthLogin(captchaKey,email,password,captcha) {
     )
 }
 
-export function AuthLogout(params){
+export function AuthLogout(params) {
     return axios.delete(
         '/console/logout',
         {
@@ -61,7 +61,7 @@ export function AuthLogout(params){
     )
 }
 
-export function AuthClearCache(params){
+export function AuthClearCache(params) {
     return axios.delete(
         '/console/cache',
         {

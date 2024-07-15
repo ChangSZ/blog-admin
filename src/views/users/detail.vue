@@ -5,12 +5,10 @@
 
 <script>
 export default {
-
   props: {},
 
-  data () {
-    return {
-    };
+  data() {
+    return {};
   },
 
   methods: {},
@@ -19,10 +17,8 @@ export default {
 
   computed: {},
 
-  mounted(){},
-
-}
-
+  mounted() {},
+};
 </script>
 <style scoped>
 </style>

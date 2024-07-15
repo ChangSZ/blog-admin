@@ -8,7 +8,7 @@ let config = {
     }
 };
 
-export function getCateList(params){
+export function getCateList(params) {
     return axios.get(
         '/console/cate',
         {
@@ -17,7 +17,7 @@ export function getCateList(params){
     )
 }
 
-export function CateEdit(id,params){
+export function CateEdit(id, params) {
     return axios.get(
         '/console/cate/edit/' + id,
         {
@@ -26,9 +26,9 @@ export function CateEdit(id,params){
     )
 }
 
-export function CateUpdate(id,name,displayName,seoDesc,parentId) {
+export function CateUpdate(id, name, displayName, seoDesc, parentId) {
     return axios.put(
-        '/console/cate/'+ id,
+        '/console/cate/' + id,
         {
             name: name,
             displayName: displayName,
@@ -39,7 +39,7 @@ export function CateUpdate(id,name,displayName,seoDesc,parentId) {
     )
 }
 
-export function CateCreate(name,displayName,seoDesc,parentId) {
+export function CateCreate(name, displayName, seoDesc, parentId) {
     return axios.post(
         '/console/cate/',
         {
@@ -52,7 +52,7 @@ export function CateCreate(name,displayName,seoDesc,parentId) {
     )
 }
 
-export function CateDestory(id,params) {
+export function CateDestory(id, params) {
     return axios.delete(
         '/console/cate/' + id,
         {

@@ -7,7 +7,7 @@ let config = {
     }
 };
 
-export function SystemIndex(params){
+export function SystemIndex(params) {
     return axios.get(
         '/console/system',
         {
@@ -16,9 +16,9 @@ export function SystemIndex(params){
     )
 }
 
-export function SystemUpdate(id,title,keywords,description,recordNum,theme) {
+export function SystemUpdate(id, title, keywords, description, recordNum, theme) {
     return axios.put(
-        '/console/system/'+ id,
+        '/console/system/' + id,
         {
             title: title,
             keywords: keywords,
@@ -31,7 +31,7 @@ export function SystemUpdate(id,title,keywords,description,recordNum,theme) {
 }
 
 
-export function HomeIndex(params){
+export function HomeIndex(params) {
     return axios.get(
         '/console/home/',
         {

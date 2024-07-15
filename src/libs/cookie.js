@@ -20,17 +20,17 @@ export function getCookie(name) {
 }
 
 
-export function getAllCookie(){
+export function getAllCookie() {
     return document.cookie;
 }
 
 
-export function clearCookie(name){
+export function clearCookie(name) {
     setCookie(name, '', -1);
 }
 
 
-export function delCookie(name){
+export function delCookie(name) {
     var exp = new Date();
     exp.setTime(exp.getTime() - 1);
     var cval = getCookie(name);
