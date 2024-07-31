@@ -1,7 +1,7 @@
-import { clearCookie, getCookie } from '@/libs/cookie';
 import axios from 'axios';
 import { Message } from 'iview';
 import router from '../router/index';
+import store from '../store'
 
 
 function CreateAxios(url = '/console', time = 10000) {
@@ -11,15 +11,10 @@ function CreateAxios(url = '/console', time = 10000) {
 
     // request拦截器
     instance.interceptors.request.use(config => {
-        // if (!config.params.limit) {
-        //     console.log(config.params.limit,config.url);
-        //     config.params['limit'] = 10;
-        // }
-
-        if (getCookie('token')) {
-            config.headers['x-auth-token'] = getCookie('token');
+        const token = store.getters['auth/token'];
+        if (token) {
+            config.headers['x-auth-token'] = token;
         }
-
         return config;
     }, error => {
         console.log(error, "woo"); // for debug
@@ -29,13 +24,9 @@ function CreateAxios(url = '/console', time = 10000) {
 
     // respone拦截器
     instance.interceptors.response.use(function (response) {
-        // console.log('请求后',this.$route.params);
-
-        // console.log(response.data);
         const code = response.data.code;
         if (code === 400001005) {
-            clearCookie('token');
-            // location.href = '/login'
+            store.dispatch('auth/unsetToken')
             router.push({ path: "/login" })
         }
         if (code !== 0 && code !== 200 && code !== 407000015) {

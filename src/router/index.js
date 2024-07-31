@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './routers'
-import { getCookie } from '@/libs/cookie'
+import store from '../store'
 import iView from 'iview'
 
 Vue.use(Router);
@@ -20,7 +20,7 @@ router.beforeEach((to, from, next) => {
  * @description 需要登陆页token或cookie认证代码参考如下
  */
   iView.LoadingBar.start();  // 开启loading
-  const token = getCookie("token");  // 获得token getToken方法自定义
+  const token = store.getters['auth/token'];  // 获得token getToken方法自定义
 
   if (!token && to.name !== LOGIN_PAGE_NAME && to.name !== REGISTER_PAGE_NAME) {
     // 未登录且要跳转的页面不是登录页

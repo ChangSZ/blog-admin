@@ -8,7 +8,10 @@
       <DropdownMenu slot="list">
         <!-- 是否展示消息页 -->
         <DropdownItem name="message" v-if="false">
-          消息中心<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
+          消息中心<Badge
+            style="margin-left: 10px"
+            :count="messageUnreadCount"
+          ></Badge>
         </DropdownItem>
         <DropdownItem name="delCache">清除缓存</DropdownItem>
         <DropdownItem name="logout">退出登录</DropdownItem>
@@ -20,7 +23,7 @@
 <script>
 import "./user.less";
 import { AuthLogout, AuthClearCache } from "@/api/auth";
-import { clearCookie } from "@/libs/cookie";
+import { mapActions } from "vuex";
 
 export default {
   name: "User",
@@ -35,14 +38,12 @@ export default {
     },
   },
   methods: {
+    ...mapActions("auth", ["unsetToken"]),
     logout() {
       AuthLogout()
         .then((res) => {
-          window.localStorage.removeItem("token");
+          this.unsetToken();
           location.href = "/";
-          // this.$router.push({
-          //   name: '/'
-          // })
         })
         .catch((err) => {
           this.$Message.error("操作失败" + err);

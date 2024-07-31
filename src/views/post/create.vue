@@ -2,35 +2,64 @@
   <div>
     <Card>
       <div>
-        <Form ref="formValidate" label-position="left" :model="formValidate" :rules="ruleValidate" :label-width="80">
+        <Form
+          ref="formValidate"
+          label-position="left"
+          :model="formValidate"
+          :rules="ruleValidate"
+          :label-width="80"
+        >
           <FormItem label="Title" prop="title">
             <Input v-model="formValidate.title" placeholder="title"></Input>
           </FormItem>
           <FormItem label="Category" prop="category">
-            <Select v-model="formValidate.category" placeholder="Select your category">
-              <Option v-for="item in categories" :value="item.cates.ID" :key="item.cates.ID"><span v-html="item.html"></span>{{ item.cates.DisplayName }}</Option>
+            <Select
+              v-model="formValidate.category"
+              placeholder="Select your category"
+            >
+              <Option
+                v-for="item in categories"
+                :value="item.cates.ID"
+                :key="item.cates.ID"
+                ><span v-html="item.html"></span
+                >{{ item.cates.DisplayName }}</Option
+              >
             </Select>
           </FormItem>
           <FormItem label="Tags" prop="tags">
             <Alert type="warning">新增标签去标签页添加,请先保存好数据</Alert>
             <Select v-model="formValidate.tags" multiple filterable>
-              <Option v-for="item in tags" :value="item.ID" :key="item.Name">{{ item.DisplayName }}
+              <Option v-for="item in tags" :value="item.ID" :key="item.Name"
+                >{{ item.DisplayName }}
               </Option>
             </Select>
           </FormItem>
 
           <FormItem label="Summary" prop="summary">
-            <Input v-model="formValidate.summary" type="textarea" :autosize="{ minRows: 2 }" placeholder="Enter summary..."></Input>
+            <Input
+              v-model="formValidate.summary"
+              type="textarea"
+              :autosize="{ minRows: 2 }"
+              placeholder="Enter summary..."
+            ></Input>
           </FormItem>
           <FormItem label="Content" prop="Content">
             <div id="vditor"></div>
           </FormItem>
           <FormItem>
-            <Button type="primary" @click="handleSubmit('formValidate')" :loading="loading">Submit</Button>
-            <Button @click="handleReset('formValidate')" style="margin-left: 8px">Reset</Button>
+            <Button
+              type="primary"
+              @click="handleSubmit('formValidate')"
+              :loading="loading"
+              >Submit</Button
+            >
+            <Button
+              @click="handleReset('formValidate')"
+              style="margin-left: 8px"
+              >Reset</Button
+            >
           </FormItem>
         </Form>
-
       </div>
     </Card>
   </div>
@@ -38,7 +67,7 @@
 
 <script>
 import { PostCreate, PostStore } from "@/api/post";
-import { getCookie } from "@/libs/cookie";
+import store from "@/store";
 import Vditor from "vditor";
 import "vditor/dist/index.css";
 
@@ -112,7 +141,7 @@ export default {
       },
       upload: {
         url: "/console/post/imgUpload",
-        token: getCookie("token"),
+        token: store.getters["auth/token"],
       },
       after: () => {
         // 在这里加载你的内容

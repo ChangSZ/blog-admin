@@ -1,32 +1,41 @@
 <template>
-  <Form ref="loginForm" :model="form" :rules="rules" @keydown.enter.native="handleSubmit">
+  <Form
+    ref="loginForm"
+    :model="form"
+    :rules="rules"
+    @keydown.enter.native="handleSubmit"
+  >
     <FormItem prop="email">
       <Input v-model="form.email" placeholder="请输入账号">
-      <span slot="prepend">
-        <Icon :size="16" type="ios-person"></Icon>
-      </span>
+        <span slot="prepend">
+          <Icon :size="16" type="ios-person"></Icon>
+        </span>
       </Input>
     </FormItem>
     <FormItem prop="password">
       <Input type="password" v-model="form.password" placeholder="请输入密码">
-      <span slot="prepend">
-        <Icon :size="14" type="md-lock"></Icon>
-      </span>
+        <span slot="prepend">
+          <Icon :size="14" type="md-lock"></Icon>
+        </span>
       </Input>
     </FormItem>
     <FormItem prop="captcha">
       <Row>
         <Col span="11">
-        <Input v-model="form.captcha" placeholder="请输入验证码">
-        <span slot="prepend">
-          <Icon :size="14" type="md-image"></Icon>
-        </span>
-        </Input>
+          <Input v-model="form.captcha" placeholder="请输入验证码">
+            <span slot="prepend">
+              <Icon :size="14" type="md-image"></Icon>
+            </span>
+          </Input>
         </Col>
-        <Col span="2" style="text-align: center">
-        </Col>
+        <Col span="2" style="text-align: center"> </Col>
         <Col span="11">
-        <img :src="captchaSrc" @click="changeCaptcha()" alt="图形验证码" style="height: 32px;margin-left: 10px;margin-right: 10px">
+          <img
+            :src="captchaSrc"
+            @click="changeCaptcha()"
+            alt="图形验证码"
+            style="height: 32px; margin-left: 10px; margin-right: 10px"
+          />
         </Col>
       </Row>
     </FormItem>
@@ -38,7 +47,7 @@
 </template>
 <script>
 import { Login, AuthLogin } from "@/api/auth";
-import { setCookie } from "@/libs/cookie";
+import { mapActions } from "vuex";
 
 export default {
   captchaSrc: "",
@@ -87,6 +96,7 @@ export default {
     this.changeCaptcha();
   },
   methods: {
+    ...mapActions("auth", ["setToken"]),
     handleSubmit() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
@@ -99,7 +109,7 @@ export default {
             .then((res) => {
               if (res.data.code === 0) {
                 this.$Message.success(res.data.message);
-                setCookie("token", res.data.data);
+                this.setToken(res.data.data);
 
                 setTimeout(() => {
                   this.$router.push("/home");
