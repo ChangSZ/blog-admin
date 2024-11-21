@@ -4,7 +4,7 @@ import router from '../router/index';
 import store from '../store'
 
 
-function CreateAxios(url = '/console', time = 10000) {
+function CreateAxios(url = '/console', time = 50000) {
     const instance = axios.create();
     instance.defaults.baseURL = '';
     instance.defaults.timeout = time;   // 超时时间
